@@ -1,0 +1,468 @@
+\documentclass{article}
+\usepackage{listings}
+\usepackage{underscore}
+\usepackage{mdframed}
+\usepackage{tabularx}
+\usepackage{floatrow}
+\usepackage[bookmarks=true]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[skip=2pt, labelfont=bf]{caption}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+
+\hypersetup{
+	colorlinks = true,
+    linkcolor=black,       % color of internal links
+}%
+
+\usepackage{hyperref}
+\begin{document}
+
+\title{\bf \Huge Fashion Trend Analytics\\[\baselineskip]\Large TEST PLAN \\ Team JAZZ MEN}
+\author{Anagh Goswami 1217426 \\ Meet Pandya 1214306 \\ Jasman Gill  1211554 \\ Jesse Truong  1222722 \\ Jia Xu  1213268 \\}
+\date{\today}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\section*{Revision History}
+\begin{tabular}{|p{5cm}|p{2cm}|p{5cm}|}
+\hline
+\textbf{Date}  & \textbf{Version} & \textbf{Comments} \\ \hline
+November 2, 2016 & 1.0 &  First draft \\ 
+\hline
+\end{tabular}
+
+\newpage
+
+\section{Overview}
+
+The purpose of this document is to provide an initial plan for the testing of our project and application. The following gives out a brief outline and an overview of what is discussed in this document:
+	\begin{itemize}
+		\item A proof of concept is described in Section 3
+		\item The different variations of test cases to be tested are described in section 5
+		\item Each test case is categorized based on whether it is for a functional or non-functional requirement in sections 5.1 and 5.2
+	\end{itemize}
+
+	\subsection{Test Case Format}
+	Each test case is formatted as shown below:
+
+	\begin{mdframed}[linewidth=1pt]
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Test name}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Requirement Type}\\[\baselineskip]
+	{\bf Description:} & A description of the test being conducted\\[0.5\baselineskip]
+	{\bf Input:} &  The input to the system that will change the system's state\\[0.5\baselineskip]
+	{\bf Output:} & The relevant output that is observed\\[0.5\baselineskip]
+	{\bf Pass:} & The pass criteria describes what is acceptable as a successful test based on the requirements of the system
+	\end{tabularx}
+	\end{mdframed}
+		
+	
+
+\newpage
+
+
+\section{Software Specifications}
+		
+	\subsection{Functional Requirements}
+		\begin{itemize}
+			\item Data Scraping
+				\begin{itemize}
+					\item Download HTML/XML from specified fashion blogs and websites	
+					\item	 Parse HTML data for relevant fashion trend information
+					\item	 Find product pages from retailer websites based on analysis of fashion trends
+				\end{itemize}
+			\item Analyzing
+				\begin{itemize}
+					\item Identify top industry trends mentioned by bloggers and industry people in data scraped from fashion sites
+					\item	Persist analysis results in database
+				\end{itemize}
+			\item Reporting
+				\begin{itemize}
+					\item Display top trends in website
+					\item Provide link for user to directly purchase product from retailer
+				\end{itemize}
+		\end{itemize}
+
+	\subsection{Non-Functional Requirements}
+		\begin{itemize}
+			\item Look and Feel
+				\begin{itemize}
+					\item Trends should be easily identifiable for users in results web page
+				\end{itemize}
+			\item Usability 
+				\begin{itemize}
+					\item Web site should be usable by anyone of the age 15+ with no prior training
+				\end{itemize}
+			\item Performance
+				\begin{itemize}
+					\item Scraping should complete in reasonable amount of time, without timing out
+					\item Scraping and analysis tasks should not be too resource-intensive
+					\item Products and trends presented should be accurate and relevant
+					\item Website should be available 24 hours, 365 days
+				\end{itemize}
+			\item Operational
+				\begin{itemize}
+					\item Server should be available to perform scraping, analysis and web serving tasks
+					\item Server should output log files with console output and errors
+				\end{itemize}
+			\item Security
+				\begin{itemize}
+					\item Website should not be vulnerable to any injection attacks
+				\end{itemize}
+			\item Legal
+				\begin{itemize}
+					\item Should only be scraping data from public domains
+					\item Should not violate website rules in regards to scraping, or API usage
+				\end{itemize}
+		\end{itemize}
+
+\newpage
+
+% NEW SECTION
+
+\section{Proof of Concept Testing}
+			Datasets (cover typical application scenario from real world to widely used)
+
+Performance Metrics (latency, throughput, accuracy)
+\begin{itemize}
+	\item Accuracy in terms of how well the website works
+	\item Maximum occupancy
+		\begin {itemize}
+			\item Response time
+			\item	How fast the web page loads for the users
+		\end{itemize}
+\end {itemize}
+
+Risks in your project (think this together with the proof of concept demo)
+\begin{itemize}
+\item We can’t develop an accurate algorithm
+	\begin{itemize}
+		\item Solution: put more effort into researching of already working algorithms and work from there
+	\end{itemize}
+\item Web scraping
+\begin{itemize}
+\item  Finding the needed information on a website
+\end{itemize}
+\begin{itemize}
+
+\item Can be hard to differentiate between useful information and extra jumble 
+\item Information will be organized in a different manner across all the websites. This causes a problem with how to do unified web scraping of the data with one generic scraping algorithm.
+\item The keywords that we are using to scrape data from sites might not be the most optimal syntax, since there are many ways for a website to describe their 
+\end{itemize}
+\item If there isn’t enough information available for us to find a reliable trend
+\begin{itemize}
+\item Solution: switch industries and try a different topic
+\end{itemize}
+\item What type of scraping we will be doing?
+\begin{itemize}
+\item Whether it is graphical for the images of clothes? Or scraping the data-text, for ex: scraping through the text on a page and then interpret the data in an understandable manner. 
+\item We run in the risk of having difficulty with data scraping to begin with and how to scrape through multiple websites designed in their own unique way. 
+\item Potential risk is the web scraping algorithm only works on a particular website. 
+\begin{itemize}
+\item Solution: make an algorithm that works on multiple websites efficiently. Algorithm which can also be applied to fashion websites that were never tested during this project.
+\end{itemize}
+\end{itemize}
+
+\end{itemize}
+	
+
+
+%NEW SECTION
+
+
+\newpage 
+
+\section{Testing}
+
+
+	\subsection{Automated Testing}
+	All unit testing for this project will be automated to save time. Unit tests will be created and tested as the project is developed. These unit tests will be separated by different modules including Python unit testing and Javascript unit testing. We will be using Unittest for Python and QUnit for Javascripts. Uni ttest is a built-in unit testing module / library in Python2 and Python3. This will serve as the testing module we will use to perform our unit testing on all Python code. QUnit is a Javascript unit testing framework that can be used to test any generic Javascript code.
+
+	\newpage
+
+	\subsection{Functional Requirements Testing}
+
+	\begin{mdframed}[linewidth=1pt]
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Verify Data Scraping(Manual)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Functional (Data Scraping)}\\[\baselineskip]
+	{\bf Description:} & Run scraping task for a page then compare result with that page's source code\\[0.5\baselineskip]
+	{\bf Input:} &  A webpage of any clothing website\\[0.5\baselineskip]
+	{\bf Output:} & HTML data\\[0.5\baselineskip]
+	{\bf Pass:} & The output HTML data matches the page's source code
+	\end{tabularx}
+	\end{mdframed}
+
+	\begin{mdframed}[linewidth=1pt]
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Verify Data Scraping Part 2 (Manual)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Functional (Data Scraping)}\\[\baselineskip]
+	{\bf Description:} & Check scraped data for relevance\\[0.5\baselineskip]
+	{\bf Input:} &  HTML data from webpage\\[0.5\baselineskip]
+	{\bf Output:} & Text \\[0.5\baselineskip]
+	{\bf Pass:} & The output text should be fashion trends mentioned in the webpages
+	\end{tabularx}
+	\end{mdframed}
+
+	\begin{mdframed}[linewidth=1pt]
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Relevant Product Page (Manual)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Functional (Data Scraping)}\\[\baselineskip]
+	{\bf Description:} & Product pages pertain to trend fashion data\\[0.5\baselineskip]
+	{\bf Input:} &  Trends Data\\[0.5\baselineskip]
+	{\bf Output:} & Product Page\\[0.5\baselineskip]
+	{\bf Pass:} & Product page is relevant to that particular trend
+	\end{tabularx}
+	\end{mdframed}
+
+	\begin{mdframed}[linewidth=1pt]
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Verify Trends (Manual)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Functional (Analyzing)}\\[\baselineskip]
+	{\bf Description:} & Check scraped data for mentioned top trends\\[0.5\baselineskip]
+	{\bf Input:} &  Data scraped from fashion website\\[0.5\baselineskip]
+	{\bf Output:} & Trends Data\\[0.5\baselineskip]
+	{\bf Pass:} & Data should contain trends mentioned by bloggers
+	\end{tabularx}
+	\end{mdframed}
+
+	\begin{mdframed}[linewidth=1pt]
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Database Test (Automated)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Functional (Analyzing)}\\[\baselineskip]
+	{\bf Description:} & Ensure data is encapsulated in database\\[0.5\baselineskip]
+	{\bf Input:} &  Scraped Data\\[0.5\baselineskip]
+	{\bf Output:} & Database\\[0.5\baselineskip]
+	{\bf Pass:} & Data is stored in database
+	\end{tabularx}
+	\end{mdframed}
+
+
+	\begin{mdframed}[linewidth=1pt]
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Verify Top Trends (Manual)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Functional (Reporting)}\\[\baselineskip]
+	{\bf Description:} & Check system website's data to ensure top trends\\[0.5\baselineskip]
+	{\bf Input:} &  Top Trends\\[0.5\baselineskip]
+	{\bf Output:} & Webpage displaying top trends
+\\[0.5\baselineskip]
+	{\bf Pass:} & Webpage pertains top trends
+	\end{tabularx}
+	\end{mdframed}
+	
+	\begin{mdframed}[linewidth=1pt]
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Product link connects user to product page (Automated)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Functional (Reporting)}\\[\baselineskip]
+	{\bf Description:} & When link is clicked, it directs user to the purchase page of that product\\[0.5\baselineskip]
+	{\bf Input:} &  Click link associated to the product\\[0.5\baselineskip]
+	{\bf Output:} & Product Page\\[0.5\baselineskip]
+	{\bf Pass:} & Takes user to accurate product page
+	\end{tabularx}
+	\end{mdframed}
+
+
+
+
+
+
+		
+		%% NEW SUB SECTION
+	\newpage
+	\subsection{Non-Functional Requirements}
+		
+	\begin{mdframed}[linewidth=1pt]
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Results Page Visual Testing (Automated/Manual)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Non-Functional (Look and Feel)}\\[\baselineskip]
+	{\bf Description:} & Check if the results shows trends in a way that user can understand it\\[0.5\baselineskip]
+	{\bf Input:} &  A Web page inputted in the system\\[0.5\baselineskip]
+	{\bf Output:} & Accurate results appear showing trends and easy to read\\[0.5\baselineskip]
+	{\bf Pass:} & The resulted data looks understandable and useful for the user. Its shows the user what are the current popular trends in the particular clothing category.
+	\end{tabularx}
+	\end{mdframed}
+
+	\begin{mdframed}[linewidth=1pt]
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Usability Testing (Manual/Automated)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Non-Functional (Usability)}\\[\baselineskip]
+	{\bf Description:} & Check the features of the system to conclude overall how easy it is to operate the system\\[0.5\baselineskip]
+	{\bf Input:} &  webpage submitted by users\\[0.5\baselineskip]
+	{\bf Output:} & Successful utilization from user \\[0.5\baselineskip]
+	{\bf Pass:} & User is able to successfully operate all the features of the system
+	\end{tabularx}
+	\end{mdframed}
+
+
+	\begin{mdframed}[linewidth=1pt]
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Scraping Operation Time (Automated)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Non-Functional (Performance)}\\[\baselineskip]
+	{\bf Description:} & Verify that scraping data takes a reasonable amount of time\\[0.5\baselineskip]
+	{\bf Input:} &  A webpage \\[0.5\baselineskip]
+	{\bf Output:} & HTML data \\[0.5\baselineskip]
+	{\bf Pass:} & Scraping operation does not timeout and completes in a reasonable time
+	\end{tabularx}
+	\end{mdframed}
+
+
+	\begin{mdframed}[linewidth=1pt]
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Scraping Operation Resources (Automated)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Non-Functional (Performance)}\\[\baselineskip]
+	{\bf Description:} & Website should display actual trends accurately that is relevant to user\\[0.5\baselineskip]
+	{\bf Input:} &  A web page \\[0.5\baselineskip]
+	{\bf Output:} & HTML data \\[0.5\baselineskip]
+	{\bf Pass:} & Scraping operation does not take a surplus of resources
+	\end{tabularx}
+	\end{mdframed}
+
+
+	\begin{mdframed}[linewidth=1pt]
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Website information is accurate and relevant (Automated)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Non-Functional (Performance)}\\[\baselineskip]
+	{\bf Description:} & Website should display actual trends accurately that is relevant to user\\[0.5\baselineskip]
+	{\bf Input:} &  Click on web page \\[0.5\baselineskip]
+	{\bf Output:} & Relevant data shown on web page \\[0.5\baselineskip]
+	{\bf Pass:} & Data shown on web page is relevant and accurate
+	\end{tabularx}
+	\end{mdframed}
+	
+
+	\begin{mdframed}[linewidth=1pt]
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Website is functional at all times (Automated)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Non-Functional (Performance)}\\[\baselineskip]
+	{\bf Description:} & Website should always be available to users 24 hours 365 days of the year\\[0.5\baselineskip]
+	{\bf Input:} &  Click on web page \\[0.5\baselineskip]
+	{\bf Output:} & Web page \\[0.5\baselineskip]
+	{\bf Pass:} & Web page loads
+	\end{tabularx}
+	\end{mdframed}
+
+
+	\begin{mdframed}[linewidth=1pt]
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Server Operations are functional (Automated)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Non-Functional (Operational)}\\[\baselineskip]
+	{\bf Description:} & Servers should be available to perform scraping, analysis and web serving tasks\\[0.5\baselineskip]
+	{\bf Input:} &  Instructions to the server \\[0.5\baselineskip]
+	{\bf Output:} & Tasks delivered accordingly \\[0.5\baselineskip]
+	{\bf Pass:} & Tasks are fulfilled and satisfactory
+	\end{tabularx}
+	\end{mdframed}
+
+	\begin{mdframed}[linewidth=1pt]
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Server operations reports status to the console (Automated)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Non-Functional (Operational)}\\[\baselineskip]
+	{\bf Description:} & Servers should output log files with console output and errors\\[0.5\baselineskip]
+	{\bf Input:} &  Instructions to the server \\[0.5\baselineskip]
+	{\bf Output:} & Log in console \\[0.5\baselineskip]
+	{\bf Pass:} & Server successfully displays information in the console output
+	\end{tabularx}
+	\end{mdframed}
+
+
+	\begin{mdframed}[linewidth=1pt]
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Prevent Injection Attacks (Automated)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Non-Functional (Security)}\\[\baselineskip]
+	{\bf Description:} & HTML commands hidden as search queries on website should not be executed\\[0.5\baselineskip]
+	{\bf Input:} &  String from webpage with inline HTML commands \\[0.5\baselineskip]
+	{\bf Output:} & Items related to search string \\[0.5\baselineskip]
+	{\bf Pass:} & Search string does not affect HTML data
+	\end{tabularx}
+	\end{mdframed}
+
+		
+	\begin{mdframed}[linewidth=1pt]
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Prevent Injection Attacks (Automated)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Non-Functional (Security)}\\[\baselineskip]
+	{\bf Description:} & SQL commands hidden as search queries on website should not be executed\\[0.5\baselineskip]
+	{\bf Input:} &  String from webpage with inline SQL commands \\[0.5\baselineskip]
+	{\bf Output:} & Items related to search string \\[0.5\baselineskip]
+	{\bf Pass:} & Search string does not affect SQL data
+	\end{tabularx}
+	\end{mdframed}
+
+
+	\begin{mdframed}[linewidth=1pt]
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Prevent Injection Attacks (Automated)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Non-Functional (Security)}\\[\baselineskip]
+	{\bf Description:} & Javascript commands hidden as search queries on website should not be executed\\[0.5\baselineskip]
+	{\bf Input:} &  String from webpage with inline Javascript commands \\[0.5\baselineskip]
+	{\bf Output:} & Items related to search string \\[0.5\baselineskip]
+	{\bf Pass:} & Search string does not affect Javascript data
+	\end{tabularx}
+	\end{mdframed}
+
+
+
+	\begin{mdframed}[linewidth=1pt]
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Scraping Data from Public Domains (Automated/Manual)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Non-Functional (Legal)}\\[\baselineskip]
+	{\bf Description:} & Ensuring all websites that are being scraped are public websites that are available on the Web\\[0.5\baselineskip]
+	{\bf Input:} &  Search keywords on Google to find public domain websites within project interest\\[0.5\baselineskip]
+	{\bf Output:} & List of websites to scrape from \\[0.5\baselineskip]
+	{\bf Pass:} & All websites on project's scrape list are available on the Web
+	\end{tabularx}
+	\end{mdframed}
+
+
+	\begin{mdframed}[linewidth=1pt]
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Website links are functional (HTML/CSS Testing) (Automated/Manual)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Non-Functional (Look and Feel)}\\[\baselineskip]
+	{\bf Description:} & Ensure that the HTML/CSS code used in building the website is validated and functional \\[0.5\baselineskip]
+	{\bf Input:} & HTML and CSS code used in creating the website \\[0.5\baselineskip]
+	{\bf Output:} & Debugging errors spotted by Validator.nu \\[0.5\baselineskip]
+	{\bf Pass:} & Code is validated i.e no errors are found
+	\end{tabularx}
+	\end{mdframed}
+
+
+	\begin{mdframed}[linewidth=1pt]
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Javascript code used is functional (Automated/Manual)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Non-Functional (Look and Feel)}\\[\baselineskip]
+	{\bf Description:} & Ensure that Javascript functions are valid \\[0.5\baselineskip]
+	{\bf Input:} & HTML and CSS code used in creating the website \\[0.5\baselineskip]
+	{\bf Output:} & Debugging errors spotted by Validator.nu \\[0.5\baselineskip]
+	{\bf Pass:} & Code is validated i.e no errors are found
+	\end{tabularx}
+	\end{mdframed}
+
+
+
+
+	\newpage
+	
+	\section{Timeline}
+	This document is designed in a way to follow the timeline posted below. The timeline is to assist the progression of testing the system and it is an estimated 		completion time which could or could not be met on time due to running into errors. \\
+
+		
+		\begin{tabular}{|p{5cm}|p{5cm}|}
+		\hline
+		\textbf{Expected Completion Date}  & \textbf{Task to be completed} \\ \hline
+		November 10, 2016 & Verify data scraping scripts \\ 
+		November 22, 2016 & Proof of Concept Demonstration completed\\
+		\hline
+		\end{tabular}
+		
+
+
+
+
+	
+
+\end{document}
