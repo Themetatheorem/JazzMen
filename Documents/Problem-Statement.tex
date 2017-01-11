@@ -1,0 +1,67 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+% Comments ------------------------------------------------ 
+\usepackage{xcolor}
+\newif\ifcomments\commentsfalse
+
+\ifcomments \newcommand{\authornote}[3]{\textcolor{#1}{[#3 ---#2]}}
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}} \else
+\newcommand{\authornote}[3]{} \newcommand{\todo}[1]{} \fi
+
+\newcommand{\wss}[1]{\authornote{magenta}{SS}{#1}}
+\newcommand{\ds}[1]{\authornote{blue}{DS}{#1}} % End Comments
+%---------------------------------------------
+
+
+% ============================ BEGIN DOCUMENT =============================== %
+\begin{document}
+
+% Title Page -----------------------------------------------------------------
+\title{Problem Statement\\  Sentiments Analysis with Twitter \\Team Jazz Men}
+\author{Anagh Goswami 1217426 \\ Meet Pandya 1214306 \\ Jasman Gill  1211554 \\ Jesse Truong  1222722 \\ Jia Xu  1213268 \\}
+\date{\today}
+\maketitle
+\pagenumbering{gobble}
+\maketitle
+\newpage
+
+\begin{table}[h]
+\centering
+\caption{Revision History}
+\begin{tabular}{p{9cm}ll}
+\toprule
+\textbf{Description of Changes} & \textbf{Author(s)} & \textbf{Date}\\\midrule
+Created first version of the  problem statement. & Jasman Gill & 2016-11-24\\\midrule
+Edited the information for the new idea & Meet Pandya & 2017-01-02\\\midrule
+Edited the document. &Jesse Truong &2017-01-08\\\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{Background}
+Social media is a place for small talk, discussion and sharing of ideas. Social media includes many different platforms used by hundreds of millions of people across the globe. Big organizations can utilize these platforms in order to imporove their own reputations as well as figuring out different ways to increase their customer base. Using social media, these companies can discover what the public eye thinks of them.\\
+
+\subsection*{Description of Problem}
+One of the biggest social media platforms available today is Twitter. Twitter is one of the three giants in the social media industry. It is widely used to express opinions and convey thoughts to the public. The current generations of young adults use Twitter as a tool to gauge into the minds of their friends and colleagues. This generation of social media users are mostly attending high school and are deciding on their future academic facility that they will be attending. Currently, there is no medium for them to quickly assess what their fellow peers think of each academia without having to complete independent research.\\
+
+\noindent Allowing students to see collected and analyzed data would greatly aid in the decision of which school they wish to attend. This is more so true for those who are split on making a decision between two different universities they wish to attend. Being able to view the opinions of their friends and colleagues can help push them over to one side. This project can also be used to help companies determine their public image and what they can do to improve their outlook towards the public. Using this project, companies can delve into the positive and negative aspects of their company.\\
+
+\subsection*{Motivation}
+Social media comes with endless possibilies to help improve the quality of life for everyone. Social media is apart of everyones day to day lives. Whether you are deciding on which restaurant to eat at, sharing a picture of your pets or bragging about how great your university life is going, social media is there. Organizations use social media now as a cheaper alternative to focus groups in order to develop an image of their company and better themselves. The problem is that social media can be limited at times and can be biased  when finding opinions of a topic. In order to have a better understanding of the publics opinion on a topic, there needs to be a bigger consensus. This is where the major motivation for the project comes from; finding a way to complete an analysis using social media platforms to ease the process of finding the opinion.\\
+
+
+\subsection*{Stakeholders}
+The major stakeholders for this project include Team Jazzmen, Dr. Wenbo, and business analysts. This project is designed to help business analysts and the common users to develop opinions towards different topics. Team Jazzmen are stakeholders because we are the ones developing and maintaining the project. Dr. Wenbo is the project supervisor for this project.\\
+
+\subsection*{Context \& Environment}
+The project is designed to help businesses and the common users to develop opinions on various topics through social media. The aim is to help them gauge what the public's opinion on current matters are and possibly determine how to better it. \\
+
+\subsection*{Challenges}
+The challenges for this project would be figuring out the way to go through social media and getting all the necessary information needed based on a topic or a keyword. We have to work with the information that is freely available on the internet. One of the major issue with social media is all the information can be biased, so the information we collect has to be presented in a manner that it does not come across as factual. Also, picking what kind of organizations to focus on is a challenge because not all organizations are actively discussed on social media platforms.\\
+
+\subsection*{Constraints}
+The constraints we face include the amount of industry specific data that is available to us. We have to work with what we’re given and from there we can try to make trends and analyse data. 
+
+
+ 
+\end{document}

@@ -1,0 +1,55 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1.4in]{geometry}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{graphicx}
+\graphicspath{ {Images/} }
+% Comments ------------------------------------------------ 
+\usepackage{xcolor}
+\newif\ifcomments\commentstrue
+
+\ifcomments \newcommand{\authornote}[3]{\textcolor{#1}{[#3 ---#2]}}
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}} \else
+\newcommand{\authornote}[3]{} \newcommand{\todo}[1]{} \fi
+
+\newcommand{\wss}[1]{\authornote{magenta}{SS}{#1}}
+\newcommand{\ds}[1]{\authornote{blue}{DS}{#1}} % End Comments
+%---------------------------------------------
+\setlength{\parindent}{0pt}
+
+% ============================ BEGIN DOCUMENT =============================== %
+\begin{document}
+
+
+\title{Proof of Concept\\ Sentiments Analysis with Twitter \\Team Jazz Men}
+\author{Anagh Goswami 1217426 \\ Meet Pandya 1214306 \\ Jasman Gill  1211554 \\ Jesse Truong  1222722 \\ Jia Xu  1213268 \\}
+\date{\today}
+\maketitle
+\newpage
+
+\section{Significant Risks}
+To successfully accomplish this project, the risks mentioned below must be taken account for:
+\begin{enumerate}
+	\item Reliability of server
+	\item Effective web UI design
+	\item Ensuring website is portable (mobile and desktop friendly)
+	\item Ensuring website is accessible for those with disabilities
+	
+\end{enumerate}
+
+
+
+\section{Demonstration Plan}
+For the proof of concept demonstration, we will be creating a working prototype of our sentiment analysis program. Initially the results will be generated using the keywords "McMaster University". We will then utilize the Bootstrap Framework in order to develop the front end side of the webpage where the results are to be displayed in a more appealing format. \\
+
+The prototype will run the sentiment analysis API using a given keyword which will then take the generated results and display them in a tabular format. Using the given keyword, the sentiment API combined with the Twitter API will work together to retrieve tweets and score each one. These scores will then be formatted in a presentable manner and displayed onto the webpage. The users can then sift through the tweets to see the positive and negative comments regarding the given keyword (Figure 1). 
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\textwidth]{mac2}
+\caption{Data result}
+\label{fig:Data}
+\end{figure}
+
+\end{document}

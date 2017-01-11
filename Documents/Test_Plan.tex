@@ -1,0 +1,248 @@
+\documentclass{article}
+\usepackage{listings}
+\usepackage{underscore}
+\usepackage{mdframed}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{floatrow}
+\usepackage[bookmarks=true]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[skip=2pt, labelfont=bf]{caption}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+
+\hypersetup{
+	colorlinks = true,
+    linkcolor=black,       % color of internal links
+}%
+
+\usepackage{hyperref}
+\begin{document}
+
+\title{Test Plan\\  Sentiments Analysis with Twitter \\Team Jazz Men}
+\author{Anagh Goswami 1217426 \\ Meet Pandya 1214306 \\ Jasman Gill  1211554 \\ Jesse Truong  1222722 \\ Jia Xu  1213268 \\}
+\date{\today}
+\maketitle
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\begin{table}[h]
+\centering
+\caption{Revision History}
+\begin{tabular}{p{9cm}ll}
+\toprule
+\textbf{Description of Changes} & \textbf{Author(s)} & \textbf{Date}\\\midrule
+Created first draft & Jasman Gill & 2016-11-02\\\midrule
+Edited the information for the new idea & Meet Pandya & 2017-01-02\\\bottomrule
+\end{tabular}
+\end{table}
+
+\newpage
+
+\section{Overview}
+
+The purpose of this document is to provide an initial plan for the testing of our project and application. The following gives out a brief outline and an overview of what is discussed in this document:
+	\begin{itemize}
+		\item A proof of concept is described in section 3
+		\item The different variations of test cases to be tested are described in section 5
+		\item Each test case is categorized based on whether it is for a functional or non-functional requirement in sections 5.1 and 5.2
+	\end{itemize}
+
+	\subsection{Test Case Format}
+	Each test case is formatted as shown below:
+
+	\begin{mdframed}[linewidth=1pt]
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Test name}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Requirement Type}\\[\baselineskip]
+	{\bf Description:} & A description of the test being conducted\\[0.5\baselineskip]
+	{\bf Initial State:} & Initial State of system before the test begins\\[0.5\baselineskip]
+	{\bf Input:} &  The input to the system that will change the system's state\\[0.5\baselineskip]
+	{\bf Output:} & The relevant output that is observed\\[0.5\baselineskip]
+	{\bf Pass:} & The pass criteria describes what is acceptable as a successful test based on the requirements of the system
+	\end{tabularx}
+	\end{mdframed}
+		
+	
+
+\newpage
+
+% NEW SECTION
+
+\section{Proof of Concept Testing}
+\section{Significant Risks}
+To successfully accomplish this project, the risks mentioned below must be taken account for:
+\begin{enumerate}
+	\item Reliability of server
+	\item Effective web UI design
+	\item Ensuring website is portable (mobile and desktop friendly)
+	\item Ensuring website is accessible for those with disabilities
+	
+\end{enumerate}
+
+
+
+\section{Demonstration Plan}
+For the proof of concept demonstration, we will be creating a working prototype of our sentiment analysis program. Initially the results will be generated using the keywords "McMaster University". We will then utilize the Bootstrap Framework in order to develop the front end side of the webpage where the results are to be displayed in a more appealing format. \\
+
+The prototype will run the sentiment analysis API using a given keyword which will then take the generated results and display them in a tabular format. Using the given keyword, the sentiment API combined with the Twitter API will work together to retrieve tweets and score each one. These scores will then be formatted in a presentable manner and displayed onto the webpage. The users can then sift through the tweets to see the positive and negative comments regarding the given keyword (Figure 1). 
+
+\section{Significant Risks}
+To successfully accomplish this project, the risks mentioned below must be taken care of:
+\begin{enumerate}
+	\item Reliability of server
+	\item Effective Web UI Design
+	\item Ensuring website is Portable (Mobile and Desktop Friendly)
+\end{enumerate}
+
+
+
+\section{Demonstration Plan}
+For the proof of concept demonstration, we will be making a working prototype consisting of an analysis of sentiments through the key term "McMaster University". We will then use the Bootstrap Framework to develop the front end of the web page in order to display the results to the public.\\
+
+The prototype will run the sentiment analysis API using the keywords and with the help of the Twitter API, it will sift through tweets using the keywords and generate results. These results will then be displayed in a tabular format for users to view. The score will be formatted in an understandable manner to the users, allowing users to view both positive and negative spectrum of the results.
+	
+
+
+%NEW SECTION
+
+
+\newpage 
+
+\section{Testing}
+
+
+	\subsection{Automated Testing}
+	All unit testing for this project will be automated to save time. Unit tests will be created and tested as the project is developed. These unit tests will be separated by different modules including Python unit testing and Javascript unit testing.
+
+	\newpage
+
+	\subsection{Functional Requirements Testing}
+
+	\begin{mdframed}[linewidth=1pt] % MP
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Verify Twitter API Parsing (Automated)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Functional (Twitter Parsing)}\\[\baselineskip]
+	{\bf Description:} & Test a keyword to search for through the Twitter API \\[0.5\baselineskip]
+	{\bf Initial State:} & Home Page of the Web UI, Idle Mode\\[0.5\baselineskip]
+	{\bf Input:} &  A keyword string or query\\[0.5\baselineskip]
+	{\bf Output:} & JSON data with tweets\\[0.5\baselineskip]
+	{\bf Pass:} & Verify that each tweet has the keyword at least once to ensure integrity
+	\end{tabularx}
+	\end{mdframed}
+
+	\begin{mdframed}[linewidth=1pt]%MP
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Verify IBM Watson API Parsing (Automated)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Functional (Watson API Parsing)}\\[\baselineskip]
+	{\bf Description:} & Check IBM watson API is able to parse through tweets provided from Twitter API and gives a score \\[0.5\baselineskip]
+	{\bf Initial State:} &  Home Page of the Web UI, Idle Mode\\[0.5\baselineskip]
+	{\bf Input:} &  Twitter data\\[0.5\baselineskip]
+	{\bf Output:} & Sentimental numeric score\\[0.5\baselineskip]
+	{\bf Pass:} & Verify score is numeric and verify if the tweet's message corresponds to the score given
+	\end{tabularx}
+	\end{mdframed}
+
+	\begin{mdframed}[linewidth=1pt]%MP
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Web Browser Verification (Manual)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Functional (Web Browser)}\\[\baselineskip]
+	{\bf Description:} & Check web browser's compatibility in order to run the application\\[0.5\baselineskip]
+	{\bf Initial State:} &  Home Page of the Web UI, Idle Mode\\[0.5\baselineskip]
+	{\bf Input:} &  A keyword string or query\\[0.5\baselineskip]
+	{\bf Output:} & Sentimental Score and a table with list of impactful tweets\\[0.5\baselineskip]
+	{\bf Pass:} & Ensure the web browser is able to display the results successfully
+	\end{tabularx}
+	\end{mdframed}
+
+		
+		%% NEW SUB SECTION
+	\newpage
+	\subsection{Non-Functional Requirements}
+
+	\begin{mdframed}[linewidth=1pt]%MP
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Uniform Theme of Web UI  (Manual)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Non-Functional}\\[\baselineskip]
+	{\bf Description:} & Check web UI through all its sections and pages\\[0.5\baselineskip]
+	{\bf Initial State:} &  Home Page of the Web UI, Idle Mode\\[0.5\baselineskip]
+	{\bf Input:} &  Home Page of the Web UI\\[0.5\baselineskip]
+	{\bf Output:} & Back at Home Page after scanning through all the pages and sections\\[0.5\baselineskip]
+	{\bf Pass:} & Ensure the look and feel of every area of the Web UI is uniform
+	\end{tabularx}
+	\end{mdframed}
+
+	\begin{mdframed}[linewidth=1pt]%MP
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Usability Test (Automated)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Non-Functional (Usability)}\\[\baselineskip]
+	{\bf Description:} & User is able to personalize their request\\[0.5\baselineskip]
+	{\bf Initial State:} &  Home Page of the Web UI, Idle Mode\\[0.5\baselineskip]
+	{\bf Input:} &  A keyword or a score\\[0.5\baselineskip]
+	{\bf Output:} & Sentiments Score based on keyword OR Tweets based on score \\[0.5\baselineskip]
+	{\bf Pass:} & Ensure appropriate data is provided for the two types of filter based on keyword and score
+	\end{tabularx}
+	\end{mdframed}
+
+
+	\begin{mdframed}[linewidth=1pt] %MP
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Performance (Manual)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Non-Functional (Performance/Speed)}\\[\baselineskip]
+	{\bf Description:} & Time taken between searching and displaying results must be minimal\\[0.5\baselineskip]
+	{\bf Initial State:} &  Home Page of the Web UI, Idle Mode\\[0.5\baselineskip]
+	{\bf Input:} &  A keyword string or query\\[0.5\baselineskip]
+	{\bf Output:} & Result displayed as sentiments score and impactful tweets displayed in table\\[0.5\baselineskip]
+	{\bf Pass:} & Ensure the time taken between entering a keyword and seeing results is minimal(few seconds)
+	\end{tabularx}
+	\end{mdframed}
+	
+	\begin{mdframed}[linewidth=1pt]%MP
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Precision and Accuracy (Automated)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Non-Functional (Reporting)}\\[\baselineskip]
+	{\bf Description:} & Analyzed data to ensure it is accurate and precise\\[0.5\baselineskip]
+	{\bf Initial State:} &  Home Page of the Web UI, Idle Mode\\[0.5\baselineskip]
+	{\bf Input:} &  A keyword or string query\\[0.5\baselineskip]
+	{\bf Output:} & Sentiments Score along with the most impactful positive and negative tweets \\[0.5\baselineskip]
+	{\bf Pass:} & Ensure the dataset has the keyword in each tweet to ensure completeness of the system
+	\end{tabularx}
+	\end{mdframed}
+
+
+		
+	\begin{mdframed}[linewidth=1pt]%MP
+	\begin{tabularx}{\textwidth}{@{}p{3cm}X@{}}
+	{\bf Test:} & {\bf Fault Tolerance (Automated)}\\[\baselineskip]
+	{\bf Requirement:} & {\bf Non-Functional (Fault Tolerance)}\\[\baselineskip]
+	{\bf Description:} & Check for exception thrown when error occurs\\[0.5\baselineskip]
+	{\bf Initial State:} &  Home Page of the Web UI, Idle Mode\\[0.5\baselineskip]
+	{\bf Input:} &  A keyword or query string inputted\\[0.5\baselineskip]
+	{\bf Output:} & Exception thrown with an error message\\[0.5\baselineskip]
+	{\bf Pass:} & The error message must be meaningful telling the user exactly what went wrong
+	\end{tabularx}
+	\end{mdframed}
+
+
+	\newpage
+	
+	\section{Timeline}
+	This document is designed in a way to follow the timeline posted below. The timeline is to assist the progression of testing the system and it is an estimated 		completion time which could or could not be met on time due to running into errors. \\
+
+		
+		\begin{tabular}{|p{5cm}|p{5cm}|}
+		\hline
+		\textbf{Expected Completion Date}  & \textbf{Task to be completed} \\ \hline
+		November 20, 2016 & Project Idea Changed to Sentiments Analysis\\
+		November 25, 2016 & Proof of Concept Demonstration completed\\
+		January 10, 2016 & Document updated with new idea\\
+		\hline
+		\end{tabular}
+	
+	
+
+\end{document}
