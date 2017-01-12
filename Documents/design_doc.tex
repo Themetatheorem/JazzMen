@@ -1,0 +1,277 @@
+\documentclass[12pt, titlepage]{article}
+\usepackage[margin=1.2in]{geometry}
+\usepackage{xcolor} % for different colour comments
+\usepackage{booktabs}
+\usepackage{enumerate}
+\usepackage{listings}
+\usepackage{titling}
+\usepackage{tabularx}
+\usepackage[hidelinks=true]{hyperref}
+\usepackage{makecell}
+
+%% Comments
+\newif\ifcomments\commentstrue
+
+\ifcomments
+\newcommand{\authornote}[3]{\textcolor{#1}{[#3 ---#2]}}
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+\else
+\newcommand{\authornote}[3]{}
+\newcommand{\todo}[1]{}
+\fi
+
+\newcommand{\wss}[1]{\authornote{magenta}{SS}{#1}}
+\newcommand{\ds}[1]{\authornote{blue}{DS}{#1}}
+
+\renewcommand\thesubsubsection{\thesection.\arabic{subsection}.\alph{subsubsection}}
+\setlength\parindent{0pt} % Cleaner look
+
+%% Graphics
+\usepackage{float}
+\usepackage{caption}
+\usepackage{graphicx}
+\graphicspath{ {Images/} }
+
+
+% Requirement template -------------------------------------------------------
+\newcommand{\requirement}[8]{%
+\fbox{\parbox{\textwidth}{%
+\parbox[t]{.333\textwidth}{\raggedright% 
+\textbf{Req. \#}: \refstepcounter{ReqNumCounter} \arabic{ReqNumCounter} \label{#1}}%
+\parbox[t]{.333\textwidth}{\centering% 
+\textbf{Req. Type}: \ref{#2}}%
+\parbox[t]{.333\textwidth}{\raggedleft%
+\textbf{Use Case \#}: \ref{#3}}
+\newline\\
+\textbf{Description}: #4\\\\
+\textbf{Rationale}: #5\\\\
+\textbf{Fit Criterion}: #6\\\\
+\textbf{Priority}: #7 \hfill \textbf{History}: #8
+}}}
+
+\begin{document}
+
+\title{Design Document\\  Sentiments Analysis with Twitter \\Team Jazz Men}
+\author{Anagh Goswami 1217426 \\ Meet Pandya 1214306 \\ Jasman Gill  1211554 \\ Jesse Truong  1222722 \\ Jia Xu  1213268 \\}
+\date{\today}
+\maketitle
+
+\pagenumbering{gobble} % start numbering after TOC
+
+\newpage
+
+% ================================= TOC ================================= %
+\newgeometry{bottom=1.1in, top=1.1in}
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+\restoregeometry
+
+\section{Revision History}
+
+\begin{table}[h]
+\centering
+\caption{Revision History}
+\begin{tabular}{|l|l|l|}
+\Xhline{3\arrayrulewidth}
+\bf Description of Changes & \bf Author & \bf Date\\\hline
+Created first version with appropriate sections. & Meet Pandya & 2017-01-07\\\midrule
+Edited the document &Jesse Truong &2017-01-08\\\bottomrule
+\Xhline{3\arrayrulewidth}
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+
+\section{Introduction}
+
+\subsection{Purpose}
+The purpose of Sentiments Analysis with Twitter is to provide a way for high school students to see what is being said about a university on the social media. This project also provides benchmark analysis which would help student compare and contrast two potential universities of their choices.
+
+\subsection{Description}
+Twitter is a hugely popular social media application used to communicate people's thoughts
+and opions with those around them. There are currently a whole generation of students that
+use the application to see what others think of a certain topic. Some of these students being
+highschool seniors who are trying to decide what university they are going to attend. There
+is no medium for them to be able to quickly assess their fellow peers thoughts on certains
+schools other then doing independent research.
+Allowing students to see collected and analyzed data would greatly help them in being able
+to determine which university is right for them. This is even more so true for students who
+are on the edge of making a decision, but would like to see others opinions be it negative or
+positive to help them with their own. Depending upon how succesful the project is, it could
+possibily even be used by companies to determine how they can improve and what others
+around them are doing that is seen as positive features.
+
+\subsection{Scope}
+The scope of Sentiments Analysis is started with but not limited to High school students. This has a potential to be expanded to organizations, brands and many more categories where Sentiments Analysis could be utilized for the intended purpose.
+
+\newpage
+\section{Overview}
+
+\section{Development Details}
+\subsection{Language of Implementation}
+The source code of the Sentiments Analysis is written with Python using the Flask Web Framework. The Webpage UI used to display the results is developed using HTML, CSS, Bootstrap Framework and Javascript.
+
+\subsection{Supporting Frameworks/APIs/Library}
+Alchemy Language API\\
+Twitter API\\
+Requests Library for HTTP (Python)\\
+Flask Web Framework\\
+Bootstrap Framework
+
+\newpage
+\section{Implementation Components}
+\subsection{Flask Function}
+Flask Web Framework is used to build the webpage using python. The "home" function within the code for Flask calls upon the HTML file that encapsulates all the Front End code for the homepage of the UI. 
+The next function called "universities" calls upon "getdata" function to retrieve the Sentiments scores and returns the data in JSON format as seen in Figure 1.
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{flask}
+\caption{Flask Function}
+\label{fig:flask}
+\end{figure}
+\subsection{Get Data Function}
+The "getdata" function as defined, iterates through the query "keyword" and each letter is fed as the input to the Twitter Search Function described in the succeeding section. Each letter is inputted in the Twitter Search function and the resulted data is added to a "storage variable". By the end of the loop, the "storage variable" has all the data retrieved from the Twitter Search Function. Finally, the "storage variable" is what is returned in this Get Data Function. The functionality of Get Data can be seen in Figure 2.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{landing}
+\caption{Screen image of Get Data Function}
+\label{fig:GetData}
+\end{figure}
+
+
+\subsection{Twitter Search Function}
+In this section the twitter search function will be discussed that entails using the Twitter API and also the Alchemy API. The twitter search function has an input parameter which is the query 'keyword' to be searched for on twitter. This keyword is used as the query in the URL for the Twitter API. Requests library is used to get the tweets from twitter API and the resulted data is stored in a variable using JSON format as seen in Figure 3. 
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{land2}
+\caption{Screen image of Twitter Search Function}
+\label{fig:TwitterSearch}
+\end{figure}
+\subsubsection{Alchemy API}
+Within the Twitter Search Function, the Alchemy API is called upon to feed the tweets in order to retrieve the Sentiment score. The score is tallied based on its emotion whether it is neutral, positive or negative. Neutral scoring tweets are not accounted for in the final result as they do not make a difference. The snippet of code for the Alchemy API is provided in Figure 4.
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{alch}
+\caption{Screen image of Alchemy API  function}
+\label{fig:Alchemy}
+\end{figure}
+
+
+\section{Error Handling}
+\subsection{Server Failure}
+\begin{itemize}
+\item Backup and Recovery Scripts
+\item Condition to redirect traffic when server is down
+\end{itemize}
+
+\newpage
+\section{User Interface Elements}
+In this section the different elements of the Web UI are displayed with images and brief description.
+\subsection{Home Page}
+This is the top of the Home Page where the user begins from every time using the application.
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1}
+\caption{Top of Home Page}
+\label{fig:Result}
+\end{figure}
+
+
+\subsection{How It Works}
+After scrolling down on the home page, this section gives a brief description of how the Sentiments Analysis works
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{2}
+\caption{How it works}
+\label{fig:Result}
+\end{figure}
+
+\subsection{Demo}
+After further scrolling down on the home page, the Demo section shows four images and by clicking on the top right image. A demo result of data is shown further down on the home page.
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{3}
+\caption{Demo}
+\label{fig:Result}
+\end{figure}
+
+\subsection{Results}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{mac2}
+\caption{Demo}
+\label{fig:Result}
+\end{figure}
+
+
+\newpage
+\section{System Components}
+A description of the System Components of Sentiments Analysis is provided here in detail. 
+
+\subsection{Comparative Analysis}
+\subsubsection{Feature Detail}
+Comparative Analysis is a feature that will be implemented in this project. This analysis can be applied to this project which allows users to compare and contrast Sentiments Score from two different data sets. For example, the two different data sets could be comparing two universities, where a student wants to see how much better is one from another. This allows for flexibility with how a user is able to utilize the data made available from the Sentiments Analysis. Instead of having simply one way of showing results with one query, comparative analysis gives users more ways of looking at the data. \\
+\subsubsection{Feature Implementation}
+The comparative results will be displayed in two categories side by side, based on the query string. The result will show the query string in huge text and underneath would be the statistical numbers displayed such as the Sentiments Score, Positive Tweets, Negative Tweets and Neutral Tweets in numerical format initially. Figure 5 shows how the comparative data will be displayed on the Web UI. 
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{mac}
+\caption{Comparative Search Result}
+\label{fig:Result}
+\end{figure}
+Next, by clicking on the Query String user will see an expanded table with a list of most impactful positive and negative tweets for that particular query string. This will allow the user to see in detail what the tweets actually discussed about the topic searched. The table will categorize each impactful tweet by user, followers, tweet and the score. Figure 6 shows how the tabular format is displayed.
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{mac2}
+\caption{Comparative Search Result}
+\label{fig:Result}
+\end{figure}
+
+\subsection{Graphical Data Representation}
+\subsubsection{Feature Detail}
+Graphical representation of the data collected from the user’s interest keywords will be displayed on the webpage. Using Google Charts API, this feature will provide easy-to-read and useful graphs of the data collected. It can be used to enhance the Comparative Analysis feature by providing graphs that show the two data sets. (If we find a way to store historical data, this feature can be implemented --->)Using historical sentiment scores, this feature can provide charts that show the sentiments trend of the keywords searched over a period of time as well. Tracked sentiments will be displayed as an overall score for each keyword searched, creating a ranking amongst the keyword set.
+
+\subsubsection{Feature Implementation}
+The visual implementation of this feature will be used within a few different functions of the webpage. As mentioned above, the Comparative Analysis feature will greatly benefit from graphical representations of the Twitter data found from the keywords searched. Pictographs of the percentage of positive/negative sentiments towards a certain keyword can depict the overall score in a clear fashion.
+
+\subsection{Historical Data - BackEnd}
+\subsubsection{Feature Detail}
+Information will be stored in a database (Mongo DB) to be used for future historical data comparison. The data that will be stored are the keywords that were used as well as associated sentiment scores for tweets. The collected data can later be pulled and analyzed with respect to future keyword search requests as well as compared through different time spans to show changes in the sentiment scores to develop trends. 
+
+\subsection{Track User Details of Specific Tweets}
+\subsubsection{Feature Detail}
+Users will input a keyword to search through Twitter messages. These messages will then be given a score depending on the sentiment towards the topic. The collected tweets will be sorted in ascending or descending order to view the extremities at the top as well as given an overall view of how positive or negative the public’s opinion is on the topic. These tweets will then be taken into account for the amount of followers the user has (their overall social media influence) and will be stored to be used for other functionalities of the web application such as advanced analysis of certain topics. We will also allow directly contacting the handlers of the tweets in order to delve further into detail of why their messages have such extreme sentiment scores.
+
+\newpage
+\section{JSON Data Format}
+The data set of searched tweets are collected in JSON format. Currently, the data set is updated according to the interest of the user
+Below is an excerpt showing the JSON format from the data collected through the Twitter API:
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{json}
+\caption{JSON data format}
+\label{fig:Result}
+\end{figure}
+
+\newpage
+\section{Algorithms}
+This project does not have many complex algorithms. This is because the Watson Sentiments Analysis API from IBM solves our complexity. The Comparative Analysis function that we are providing uses a simple algorithm that takes two sentiment scores and compares them, informing the user of how their interested keyword compares to their benchmarked keyword.
+
+
+\section{Solution to Challenges}
+\subsection{Challenges}
+Following is the challenge addressed in the Problem Statement:\\
+The challenges for this project would be figuring out the way to go through social media and getting all the necessary information needed based on a topic or a keyword. We have to work with the information that is freely available on the internet. One of the major issue with social media is all the information can be biased, so the information we collect has to be presented in a manner that it does not come across as factual. Also, picking what kind of organizations to focus on is a challenge because not all organizations are actively discussed on social media platforms.\\
+\subsection{Solution}
+The first challenge addressed was finding the means through which to go through social media data. This was solved by utilizing the Twitter API, which provides many different ways of retrieving tweeted data. Data is returned in JSON format so not very user friendly way of displaying. Therefore, the data will be presented in a systematic and understandable manner.\\
+The second challenge addressed was the bias involved with the information from social media. Because of this reason, the amount of data to be collected in order to do the analysis will be in big sizes in order to have lesser impact from biases. \\
+The third challenge addressed is what kind of organizations to focus on. This was solved by leaving the choices of organizations or institutions to be openly decided by the end user. 
+
+
+
+
+
+\end{document}
