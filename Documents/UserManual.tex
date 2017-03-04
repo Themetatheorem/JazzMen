@@ -1,0 +1,146 @@
+\documentclass[12pt, titlepage]{article}
+\usepackage{xcolor} % for different colour comments
+
+%% Comments
+\newif\ifcomments\commentstrue
+
+\ifcomments
+\newcommand{\authornote}[3]{\textcolor{#1}{[#3 ---#2]}}
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+\else
+\newcommand{\authornote}[3]{}
+\newcommand{\todo}[1]{}
+\fi
+
+\newcommand{\wss}[1]{\authornote{magenta}{SS}{#1}}
+\newcommand{\ds}[1]{\authornote{blue}{DS}{#1}}
+
+%% Graphics
+\usepackage{float}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{courier}
+\graphicspath{ {images/} }
+
+\begin{document}
+
+\title{User Manual\\  Sentiments Analysis with Twitter \\Team Jazz Men}
+\author{Anagh Goswami 1217426 \\ Meet Pandya 1214306 \\ Jasman Gill  1211554 \\ Jesse Truong  1222722 \\ Jia Xu  1213268 \\}
+\date{\copyright\ 2017 Team Jazz Men\    All Rights Reserved} 
+
+\maketitle
+
+\maketitle
+
+\tableofcontents 
+\listoffigures
+
+\listoftables
+
+\begin{table}[H]
+\section*{Revision History}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Date}  & \textbf{Comments} \\ \hline
+February 22, 2017 &  First Draft. \\ 
+\hline
+
+\end{tabular}
+\caption{Revision History Table}
+\end{table}
+
+\newpage
+
+
+\section{Introduction}
+
+\subsection{What is Sentiments Analysis?}
+Social Media Sentiment Analysis or just Sentiment Analysis is an engine that determines feelings towards certain topics using social media (e.g. Twitter). Sentiment Analysis will generate scores depending on the sentence structure and choice of words used. Sentiment Analysis utilizes the Alchemy Language API with various social media API and is then presented on a web page to allow users to view the general opinion on various categories (e.g. athletes, schools, restaurants, etc.) 
+
+\subsection{Objectives of User Manual}
+This user manual provides a simple overview on how to use the Sentiment Analysis web application. The manual provides an overview on the functionalities of the system. It also provides a guideline on troubleshooting in case of an error occuring. 
+
+\subsection{System Requirements}
+\subsubsection{PC Requirements}
+Below are the different Operating Systems compatible for Sentiments Analysis
+\begin{itemize}
+	\item Windows OS (7+)
+	\item Mac OS
+	\item Linux OS
+\end{itemize}
+\subsubsection{Browser Requirements}
+Since Sentiments Analysis is an online web application, essentially it is accessible on browsers listed below on any Computer with Internet Connection.
+\begin{itemize}
+	\item Google Chrome (54+)
+	\item Microsoft Edge
+	\item Microsoft Internet Explorer (11.0.9600.185 +)
+	\item Mozilla Firefox (50+)
+	\item Safari (9.1.3+)
+\end{itemize}
+
+\section{Functionalities and Operations}
+\subsection{Homepage}
+User arrives at the Sentiment Analysis homepage and can easily see textual information about what is Sentiment Analysis. It also provides a quick overview on how to operate the home page with instructions along every step of the way as users scroll through (Figure 1 and Figure 2). 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{a1}
+\caption{Title}
+\label{fig:Result}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{b2}
+\caption{How it Works}
+\label{fig:Result}
+\end{figure}
+
+\subsubsection{Demo Section}
+Further down the web page there is a demo section for the Sentiment Analysis. It currently includes four categories: TV Shows, Universities, Athletes, and Restaurants. Once a user selects any one of those categories, the webpage will display four different items related to the category. The Sentiment Analysis will display a report for said category with an overall score as well as individual tweets.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{c2}
+\caption{Categories}
+\label{fig:Result}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{d2}
+\caption{Categories}
+\label{fig:Result}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{e2}
+\caption{Categories}
+\label{fig:Result}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{f2}
+\caption{Categories}
+\label{fig:Result}
+\end{figure}
+
+
+
+\subsubsection{Tweet Data}
+Once a user clicks a category, the webpage expands into a table to display a list of tweets with various scores ranging from positive to negative (Figure 7). There are two tables that are displayed - one table includes the highly positive tweets and the other for the highly negative tweets. Each table has three columns: the user's Twitter handle, their follower count, and the tweet. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{g2}
+\caption{Categories}
+\label{fig:Result}
+\end{figure}
+
+
+
+
+
+\end{document}
