@@ -1,0 +1,599 @@
+\documentclass[12pt]{article}
+
+% Packages
+\usepackage[margin=1.2in]{geometry}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{listings}
+\usepackage{titling}
+\usepackage{tabularx}
+\usepackage[hidelinks=true]{hyperref}
+\usepackage{float}
+\usepackage{makecell}
+
+% Comments --------------------------------------------------------------------
+\usepackage{xcolor}
+\newif\ifcomments\commentstrue
+\ifcomments \newcommand{\authornote}[3]{\textcolor{#1}{[#3 ---#2]}}
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}} \else
+\newcommand{\authornote}[3]{} \newcommand{\todo}[1]{} \fi
+\newcommand{\wss}[1]{\authornote{magenta}{SS}{#1}}
+\newcommand{\ds}[1]{\authornote{blue}{DS}{#1}} 
+\newcommand{\mmp}[1]{\authornote{green}{MP}{#1}}
+\newcommand{\vr}[1]{\authornote{green}{VR}{#1}}
+% End Comments ---------------------------------------------------------------
+
+\renewcommand\thesubsubsection{\thesection.\arabic{subsection}.\alph{subsubsection}}
+\setlength\parindent{0pt} 
+
+% Keep track of requirement numbers
+\newcounter{ReqNumCounter}
+\setcounter{ReqNumCounter}{0}
+
+% Requirement template -------------------------------------------------------
+\newcommand{\requirement}[8]{%
+\fbox{\parbox{\textwidth}{%
+\parbox[t]{.333\textwidth}{\raggedright% 
+\textbf{Req. \#}: \refstepcounter{ReqNumCounter} \arabic{ReqNumCounter} \label{#1}}%
+\newline\\
+\textbf{Description}: #4\\\\
+\textbf{Rationale}: #5\\\\
+\textbf{Fit Criterion}: #6\\\\
+\textbf{Priority}: #7 \hfill \textbf{History}: #8
+}}}
+
+\begin{document}
+
+\title{System Requirements Document\\Team Jazz Men} 
+\author{Anagh Goswami 1217426 \\ Meet Pandya 1214306 \\ Jasman Gill  1211554 \\ Jesse Truong  1222722 \\ Jia Xu  1213268 \\}
+\date{\today}
+\maketitle
+
+\pagenumbering{gobble}
+
+\newpage
+
+% ================================= TOC ================================= %
+\newgeometry{bottom=1.1in, top=1.1in}
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+\restoregeometry
+
+% =============================== Section =============================== %
+\section{Revision History}
+All major edits to this document will be recorded in the table below.
+
+\begin{table}[h]
+\centering
+\caption{Revision History}
+\begin{tabular}{|l|l|l|}
+\Xhline{2\arrayrulewidth}
+\bf Description of Changes & \bf Author & \bf Date\\\hline
+Initial draft of document with new idea & Jasman & December 15, 2016\\
+Edited Project Issues Section & Meet Pandya & January 8, 2017\\
+Edited the document & Jesse Truong & January 9, 2017\\
+Edited the document & Jasman Gill & April 6, 2017\\
+Compiled Final Draft & Anagh Goswami & April 9, 2017\\
+\Xhline{2\arrayrulewidth}
+\end{tabular}
+\end{table}
+
+% =============================== Section =============================== %
+\newpage
+\section{Project Drivers}
+
+% ----------------------------- Sub Section ----------------------------- %
+\subsection{Purpose of Project} % Jasman
+\subsubsection{Project Background}
+Social media is a place for small talk, discussion and sharing of ideas. Social media includes many different platforms used by hundreds of millions of people across the globe. Big organizations can utilize these platforms in order to imporove their own reputations as well as figuring out different ways to increase their customer base. Using social media, these companies can discover what the public eye thinks of them.\\
+
+\subsubsection{Goal of the project}
+The purpose of Sentments Analysis with Twitter is to provide a way for
+business analyst to see what is being said about a company on social media. This project also provides benchmark analysis which would help business' compare and contrast two potential companies and why one is doing good in the public eye and the other not so much.
+
+% ----------------------------- Sub Section ----------------------------- %
+\subsection{Stakeholders}\label{SubSec_Stakeholders} % Jasman
+The projects current stakeholders are the following:
+\begin{itemize}
+\item Team Jazz Men
+\item Dr. Wenbo (The project supervisor)
+\item Dynamic business'
+\end{itemize}
+	
+\subsubsection{The Customer}
+The customers for this project include various companies or analysts that wish to utilize the software in order to receive dynamic feedback from the community for both public and private businesses. The customer will use the software to analyze and make decisions on how they will operate according to the reactions of the community to different aspects of a company.
+
+\subsubsection{The Hands-On Users of the Product}
+Analysts will be the hands-on users for the application. They will all have the necessary knowledge to be able to use the information given to them.
+\subsubsection{Personas}
+Consider Bob Mellow, an analyst working at FootLocker. Bob wants to study how people see the company through the eyes of the public and how it may be improved. Bob knows how to conduct an analysis of the publics opinion, but it will take way too long to collect an accurate dyamic data set. Bob can now input the name of the company he wishes to conduct an analysis on and generate a report with various filters. He will then be presented with results displayed on a webpage for him to examine which could have taken weeks otherwise.
+
+% =============================== Section =============================== %
+\newpage
+\section{Project Constraints}
+
+% ----------------------------- Sub Section ----------------------------- %
+\subsection{Mandated Constraints} % Jasman
+There are global constraints put in place by the existing software, the stakeholders, and the structure of the course (Computer Science 4ZP6). The project must be built upon the existing applications being used to aid in the generation of the analysis (Twitter and IBM Watson Sentiment). The final code should be able to display any current data extracted from the prior on a web application. The web application should be able to correctly display on any web browser. Finally, the final product must be completed by the end of April, 2017. If the global constraints are not met, then the final product is not acceptable.\\ 
+
+
+% ----------------------------- Sub Section ----------------------------- %
+\subsection{Naming Conventions \& Terminology} % Jasman
+Throughout the document, ``the web application'', ``the product'', ``the project'', and/or ``the software'' all refer to the end web analysis product tool being developed.\\ 
+
+\begin{table}[h]
+\centering
+\caption{Glossary}
+\begin{tabularx}{\textwidth}{|l|X|}
+\Xhline{2\arrayrulewidth}
+\bf Term & \bf Description\\
+\hline
+Team Jazzmen & Group currently assigned to the planning and development of the proposed application\\\hline
+Analyst & The business analyst who will primarily be using the developed software\\\hline
+Web application, product, project, software & Refers to the end web analysis product tool developed\\
+\Xhline{2\arrayrulewidth}
+\end{tabularx}
+\end{table}
+
+% ----------------------------- Sub Section ----------------------------- %
+\subsection{Relevant Facts and Assumptions} %Jasman
+\subsubsection{Facts}
+\begin{itemize}
+\item Run the app through a web browser
+\item Twitter API to collect information
+\item IBM watson API to calculate feedback rating
+\end{itemize}
+
+\subsubsection{Assumptions}
+\begin{itemize}
+\item The user will have a basic understanding of analysis and web tools
+\end{itemize}
+
+% =============================== Section =============================== %
+\newpage
+\section{Requirements}
+
+% ----------------------------- Sub Section ----------------------------- %
+\subsection{The Scope of the Work} % Jasman
+\subsubsection{The Current Situation}
+Currently analysts are tasked with weeks of data preparation and consultation of data which is very time consuming and tedious. 
+
+\subsubsection{The Context of the Work}
+See Figure below
+
+
+% ----------------------------- Sub Section ----------------------------- %
+\subsection{Business Data Model \& Data Dictionary} % Jasman
+The product displays results dynamically. In order to do sentiments analysis, the system does it dynamically by running throught the APIs. The data that will be stored in a database is for historical comparison purposes.
+
+
+% ----------------------------- Sub Section ----------------------------- %
+\subsection{Functional Requirements} \label{ReqType_Functional}
+\requirement
+{Req_TwitterAPI}
+{ReqType_Functional}
+{PUC_Analysis}
+{Twitter API is able to parse through applicable keyword searches}
+{Design requirement, will ensure all available tweets in a specified time zone are obtained}
+{Running the API with a keyword should dynamically retrieve and store tweets for further analysis}
+{Very High}
+{Created January 7, 2017}
+\\\\
+
+\requirement
+{Req_IBMWatson}
+{ReqType_Functional}
+{PUC_Analysis}
+{IBM Watson API is able to parse through twitter messages and apply an accurate score.}
+{Need to ensure that all retrieved tweets are assigned a score and that it accurately corresponds to the message.}
+{Running the API should assign a score to each tweet that was found through the search.}
+{Very High}
+{Created January 7, 2017}
+\\\\
+
+\requirement
+{Req_WebApp}
+{RegType_Functional}
+{PUC_Analysis}
+{Searching for keywords using various filters displays results}
+{All applicable tweets will be displayed when searched with associated scores}
+{Searching applicable keyword will display for the user a page of pulled information with score ratings.}
+{Medium}
+{Created January 7, 2017}
+\\\\
+
+\requirement
+{Req_WebApp}
+{RegType_Functional}
+{PUC_Analysis}
+{Account registration.}
+{To individualize a user's experience and store previous searches.}
+{A registered user can use the application and see previous searches.}
+{Medium}
+{Created April 6, 2017}
+\\\\
+
+\requirement
+{Req_WebApp}
+{RegType_Functional}
+{PUC_Analysis}
+{User login.}
+{All registered users should be able to securely login.}
+{After entering the correct username and password, the user should be able to complete the login process. If any inputs are incorrect, they are prompted to try again.}
+{Medium}
+{Created April 6, 2017}
+\\\\
+
+\requirement
+{Req_WebApp}
+{RegType_Functional}
+{PUC_Analysis}
+{User logout.}
+{All logged in users should be abe to securely logout.}
+{After logging out, the user must login again if they wish to see personal information.}
+{Medium}
+{Created April 6, 2017}
+\\\\
+
+\requirement
+{Req_WebApp}
+{RegType_Functional}
+{PUC_Analysis}
+{Main page menu traversing.}
+{Choosing an appropriate sub menu should traverse the page to appropriate sub section.}
+{User is taken to appropriate sub section of the main page.}
+{Medium}
+{Created April 6, 2017}
+\\\\
+
+\requirement
+{Req_WebApp}
+{RegType_Functional}
+{PUC_Analysis}
+{Demo selector.}
+{To give the user an idea of how queries behave once searched.}
+{User is shown an analysis table of tweets based on selected demo.}
+{Medium}
+{Created April 6, 2017}
+\\\\
+
+\requirement
+{Req_WebApp}
+{RegType_Functional}
+{PUC_Analysis}
+{Table sorter.}
+{To give the user some flexibility in terms of filtering displayed data.}
+{User is able to sort the table from lowest to highest value or vise verse when appropriate table header is clicked.}
+{Medium}
+{Created April 6, 2017}
+\\\\
+
+\requirement
+{Req_WebApp}
+{RegType_Functional}
+{PUC_Analysis}
+{Custom search.}
+{Allow the user to analyze any keyword they wish to search.}
+{User enters a keyword and analysis tables are generated for and displayed to the user.}
+{Medium}
+{Created April 6, 2017}
+\\\\
+
+\requirement
+{Req_WebApp}
+{RegType_Functional}
+{PUC_Analysis}
+{Result accuracy.}
+{Ensure the data is correct.}
+{All pulled tweets must incorporate the searched keyword and be associated with an appropriate score.}
+{Medium}
+{Created April 6, 2017}
+\\\\
+
+\requirement
+{Req_WebApp}
+{RegType_Functional}
+{PUC Analysis}
+{Bubbles higlight the most positive and negative tweets}
+{Every table must have bubbles highlighting the most positive and negative tweets.}
+{Low}
+{Created April 9, 2017}
+\\\\
+
+\requirement
+{Req_WebApp}
+{RegType_Functional}
+{PUC Analysis}
+{Users have the ability to display the whole table or just extremities}
+{Users can choose how the data are displayed to them with either whole tables or just the most positive and negative tweets.}
+{Low}
+{Created April 9, 2017}
+\\\\
+
+% ----------------------------- Sub Section ----------------------------- %
+\subsection{Look and Feel Requirements}\label{ReqType_Look} % Jasman
+
+\subsubsection{Style Requirements} 
+
+\requirement
+{Req_ReportStyle}
+{ReqType_Style}
+{PUC_Analysis}
+{All pages on the web application should follow a uniform theme of light blue and white.}
+{To have a uniform look and feel to represent consistency}
+{Running the application should be a smooth process without any visual inconsistencies.}
+{Medium}
+{Created January 7, 2017}
+\\\\
+
+% ----------------------------- Sub Section ----------------------------- %
+\subsection{Usability and Humanity Requirements}\label{ReqType_Usabil} % Jasman
+
+\subsubsection{Ease of Use Requirements}
+NA -- There are no Usability and Humanity Requirements
+
+
+\subsubsection{Personalization and Internationalization Requirements}
+
+\requirement
+{Req_Personalization and Internationalization}
+{ReqType_filter}
+{PUC_Analysis}
+{The user will be able to personalize their request in terms of score and keyword.}
+{The web app deliver filters in a dynamic setting.}
+{A user who is able to sort a given score rating and keyword search should be able to view messages and scores filtered.}
+{Medium}
+{Created January 7, 2017}
+\\\\
+
+\subsubsection{Learning Requirements}
+NA -- The software will not have any specific learning requirements other then basic use of web applications.
+
+
+\subsubsection{Understandability and Politeness Requirements}
+NA
+
+\subsubsection{Accessibility Requirements}
+NA -- The software will not provide any specific support for accessibility.
+
+
+% ----------------------------- Sub Section ----------------------------- %
+\subsection{Performance Requirements}\label{ReqType_Performance}
+\subsubsection{Speed and Latency Requirements}
+\requirement
+{Req_Speed}
+{ReqType_Performance}
+{PUC_Analysis}
+{The time between a search and result should be almost instantaneous only deviating depending on the users internet connection}
+{The web app does not involve heavy computational effort, and should evaluate in timely fashion thus wise.}
+{Searching a keyword with applicable filters will deliver a result page in a set time frame unless affected by issues on the users side.}
+{Low}
+{Created January 7, 2017}
+
+\subsubsection{Safety Critical Requirements}
+NA -- The software is not used in safety critical environments. The web app is used by analysts to see opioniated scores on keywords.
+
+\subsubsection{Precision of Accuracy Requirements}
+\requirement
+{Req_Precision}
+{ReqType_Performance}
+{PUC_Analysis}
+{Analyzed messages should include keyword searched, timeframe and score with no margin of error.}
+{If result page is inaccurate their is no validity of using the product.}
+{The results of the filtered search should be completely accurate to what was filtered by the user on the previous page.}
+{Very High}
+{Created January 7, 2017}
+
+\subsubsection{Reliability and Availability Requirements}
+\requirement
+{Req_Reliability}
+{ReqType_Performance}
+{PUC_Analysis}
+{The product should always be available on the web. If not an applicable message should be displayed on the domain explaining the status of the page.}
+{If the product is not available on the web app, it is not able to be used by the customer.}
+{If the web app is down for maintenance an applicable message should be displayed on the domain listing out that it is infact down for maintenance and how long it will approxiamately be down for.}
+{High}
+{Created January 7, 2017}
+
+\subsubsection{Robustness or Fault-Tolerance Requirements}
+\requirement
+{Req_Error}
+{ReqType_Performance}
+{PUC_Analysis}
+{If an error occurs, the product will throw an exception with a description why the exception happened}
+{Throwing an exception as a safeguard in case of an error}
+{When an error occurs an exception is thrown and the user it notified about it.}
+{Medium}
+{Created January 7 2017}
+
+
+\subsubsection{Capacity Requirements}
+NA -- Not storing collected data, dynamically displaying.
+
+
+\subsubsection{Scalability Requirements}
+NA 
+
+\subsubsection{Longevity Requirements}
+NA -- The product is to be completed by April 2017.
+
+% ----------------------------- Sub Section ----------------------------- %
+\subsection{Operational and Environmental Requirements}\label{ReqType_Enviro} % Jasman
+
+\subsubsection{Expected Physical Environment}
+The product shall be used by an Engineering analysts who will most likely be sitting down in a temperature controlled environment.
+
+
+\subsubsection{Requirements for interfacing with adjacent Systems}
+The product will used in all web browsers that support HTML5.
+
+\subsubsection{Productization Requirements}
+\requirement
+{Req_Redist}
+{ReqType_Enviro}
+{PUC_Analysis}
+{The web app will be available on the world wide web to be used anywhere there is an internet connection.}
+{The product has to be readily available to everyone in the easiest way possible.}
+{High majority of users should be able to easily access and use the product.}
+{Low}
+{Created January 7, 2017}
+
+\subsubsection{Release Requirements}
+\requirement
+{Req_Release}
+{ReqType_Enviro}
+{PUC_Analysis}
+{New versions of the product will automatically be updated onto the web page.}
+{Users will not have to do anything on their end to recieve the new updates as it is a web app.}
+{Each new update will either remove,modify or add onto the existing framework.}
+{Medium}
+{Created January 7, 2017}
+
+% ----------------------------- Sub Section ----------------------------- %
+\subsection{Maintainability and Support Requirements} % Jasman
+
+\subsubsection{Maintenance Requirements}
+The code and application will only be maintained by Team JazzMen for the foreseable future. The original developers will not be maintaining the code after the final milestone of 4ZP6. 
+
+\subsubsection{Supportability Requirements}
+There will be instructions on the web app which shortly goes into detail on how to use the app and all its available settings.
+
+\subsubsection{Adaptability Requirements}
+The web application will be able to run on any web browser. Although it is mainly intended to be used with Google Chrome, but it is not limited to Google Chrome.
+
+% ----------------------------- Sub Section ----------------------------- %
+\subsection{Security Requirements}\label{ReqType_Security} % Jasman
+\subsubsection{Access Requirements}
+\requirement
+{Req_Access}
+{ReqType_Security}
+{PUC_Analysis}
+{All users only have access to the front end system.}
+{Front end is all the customer needs to be able to get the most out of the product.}
+{A user should always be able to achieve any task that is available for them to use.}
+{High}
+{Created January 7, 2017}
+
+\subsubsection{Integrity Requirements}
+NA -- Other then possible hardware and connectivity issues there should be no integrity problems.
+
+
+\subsubsection{Privacy Requirements}
+NA -- The privacy of the data will be managed entirely by and at the discretion of the user.
+
+
+\subsubsection{Audit Requirements}
+NA -- The software does not need to meet any specific audits.
+
+\subsubsection{Immunity Requirements}
+NA -- There will be no specific features to ensure immunity.
+
+
+% ----------------------------- Sub Section ----------------------------- %
+\subsection{Cultural Requirements} % Jasman
+NA -- The product is intended for a small number of stakeholders. All content is objective.
+
+% ----------------------------- Sub Section ----------------------------- %
+\subsection{Legal Requirements} % Jasman
+\subsubsection{Compliance Requirements}
+NA -- The product does not store or access any user information. It does not need to comply with any legal standards.
+
+\subsubsection{Standards Requirements}
+NA -- There are no internal standards that are required to be met by the product.
+
+\newpage
+\section{Project Issues}
+
+
+\subsection{Open Issues} 
+\begin{itemize}
+\item Tools needed to get sentiments score
+\item Where to display and what to use as the platform for the Project
+\item What frameworks will be needed depending on the platform
+\item The database structures that will be used to store data
+\item Functionality to user group can be varied, so the product might need maintenance to fit into systems that are already implemented by the user
+\item Results of usability test may completely change the business model
+\item Scope of the project, given project deadlines
+\item Security and Permissions
+\end{itemize}
+
+
+\subsection{Off-the-Shelf Solutions} 
+
+\subsubsection{Ready-Made Products}
+No ready-made products exist with similar functionalities
+
+\subsubsection{Reusable Components}
+N/A
+
+	
+\subsubsection{Products That Can Be Copied}
+Our product changes according to the user needs so it is a service that will be provided by the developers. Copying this service could be done only by IT Solutions for companies who have the exact expertise and project idea we have.
+
+
+
+\subsection{New Problems}
+\subsubsection{Effects on the Current Environment}
+N/A
+
+
+\subsubsection{Effects on the Installed Systems}
+N/A
+
+
+\subsubsection{Potential User Problems}
+N/A
+
+\subsubsection{Limitations of the Anticipated Implementation Environment That May Inhibit the New Product}
+Old web browsers are usually not compatible with current programming language versions, and applications.
+
+\subsection{Tasks}
+\subsubsection{Project Planning}
+\begin{itemize}
+\item Show requirements document to supervisor for critique
+\item Create a prototype for demo purposes
+\item Test and develop more features
+\end{itemize}
+\subsubsection{Planning of Development Phase}
+\begin{itemize}
+\item Make a decision on whether to use relational database or a NoSQL database and then design it
+\item Design a target User Interface
+\item Design back-end of the web application
+\item Split application into modules and assign tasks to group members for completion
+\end{itemize}
+
+\subsection{Risks} 
+\begin{itemize}
+\item Security issues with user accounts
+\item Not a huge userbase
+\item Additions to project, cause us to not be able to meet deadlines
+\end{itemize}
+
+
+\subsection{Costs} 
+\begin{itemize}
+\item Server costs in order to go live
+\item Development Time costs
+\end{itemize}
+
+\subsection{User Documentation and Training} 
+\subsubsection{User Documentation Requirements}
+A user guide will be included
+A quick walk through will be available on the main page
+
+\subsubsection{Training Requirements}
+No training is needed for a user
+
+\subsection{Waiting Room} 
+
+
+\subsection{Ideas for Solutions} 
+\begin{itemize}
+\item Bootstrap: A free open-source Framework for designing websites and web applications
+\item Flask: A web framework written in Python to create websites
+\item Twitter API: Provides programmatic access to retrieve Twitter data such as tweets
+\item Alchemy Language API: IBM developed language API which provides sentiments analysis
+\end{itemize}
+
+\end{document}
