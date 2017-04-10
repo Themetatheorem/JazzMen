@@ -1,0 +1,228 @@
+\documentclass[12pt, titlepage]{article}
+\usepackage{xcolor} % for different colour comments
+\usepackage{booktabs}
+\usepackage{enumerate}
+\usepackage{listings}
+\usepackage{titling}
+\usepackage{tabularx}
+\usepackage[hidelinks=true]{hyperref}
+\usepackage{makecell}
+%% Comments
+\newif\ifcomments\commentstrue
+
+\ifcomments
+\newcommand{\authornote}[3]{\textcolor{#1}{[#3 ---#2]}}
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+\else
+\newcommand{\authornote}[3]{}
+\newcommand{\todo}[1]{}
+\fi
+
+\newcommand{\wss}[1]{\authornote{magenta}{SS}{#1}}
+\newcommand{\ds}[1]{\authornote{blue}{DS}{#1}}
+
+%% Graphics
+\usepackage{float}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{courier}
+\usepackage{hyperref}
+\graphicspath{ {images/} }
+
+
+% Requirement template -------------------------------------------------------
+\newcommand{\requirement}[8]{%
+\fbox{\parbox{\textwidth}{%
+\parbox[t]{.333\textwidth}{\raggedright% 
+\textbf{Req. \#}: \refstepcounter{ReqNumCounter} \arabic{ReqNumCounter} \label{#1}}%
+\parbox[t]{.333\textwidth}{\centering% 
+\textbf{Req. Type}: \ref{#2}}%
+\parbox[t]{.333\textwidth}{\raggedleft%
+\textbf{Use Case \#}: \ref{#3}}
+\newline\\
+\textbf{Description}: #4\\\\
+\textbf{Rationale}: #5\\\\
+\textbf{Fit Criterion}: #6\\\\
+\textbf{Priority}: #7 \hfill \textbf{History}: #8
+}}}
+
+\begin{document}
+
+\title{User Manual\\  Sentiments Analysis with Twitter \\Team Jazz Men}
+\author{Anagh Goswami 1217426 \\ Meet Pandya 1214306 \\ Jasman Gill  1211554 \\ Jesse Truong  1222722 \\ Jia Xu  1213268 \\}
+\date{\copyright\ 2017 Team Jazz Men\    All Rights Reserved} 
+
+\maketitle
+
+
+\tableofcontents 
+\listoffigures
+
+\listoftables
+
+
+
+\begin{table}[h]
+\centering
+\caption{Revision History}
+\begin{tabular}{|l|l|l|}
+\Xhline{3\arrayrulewidth}
+\bf Description of Changes & \bf Author & \bf Date\\\hline
+Created First Draft & Meet Pandya & February 22, 2017\\\midrule
+Created Functionalities and Operational Information &Anagh Goswami & April 6, 2017\\\bottomrule
+Edited for Final Revision &Meet Pandya & April 7, 2017\\\bottomrule
+\Xhline{3\arrayrulewidth}
+\end{tabular}
+\end{table}
+
+
+
+\newpage
+
+
+\section{Introduction}
+
+\subsection{What is Sentiments Analysis?}
+Social Media Sentiment Analysis or just Sentiment Analysis is an engine that determines feelings towards certain topics using social media (e.g. Twitter). Sentiment Analysis will generate scores depending on the sentence structure and choice of words used. Sentiment Analysis utilizes the Alchemy Language API with various social media API and is then presented on a web page to allow users to view the general opinion on various categories (e.g. athletes, schools, restaurants, etc.) \\
+For background information regarding the Alchemy Language API, refer to: \url{https://alchemy-language-demo.mybluemix.net/}
+
+\subsection{Objectives of User Manual}
+This user manual provides a simple overview on how to use the Sentiment Analysis web application which is found on: \url{https://jazzmen-capstone.herokuapp.com/}. It also provides a guideline on troubleshooting in case of an error occuring. 
+
+\subsection{System Requirements}
+\subsubsection{PC Requirements}
+Below are the different Operating Systems compatible for Sentiments Analysis
+\begin{itemize}
+	\item Windows OS (7+)
+	\item Mac OS (10+)
+	\item Linux OS (Ubuntu, Xbuntu, Mint, Elemantary)
+\end{itemize}
+\subsubsection{Browser Requirements}
+Since Sentiments Analysis is an online web application, essentially it is accessible on browsers listed below on any Computer with Internet Connection.
+\begin{itemize}
+	\item Google Chrome (54+)
+	\item Microsoft Edge
+	\item Microsoft Internet Explorer (11+)
+	\item Mozilla Firefox (50+)
+	\item Safari (9+)
+\end{itemize}
+
+\section{Functionalities and Operational Information}
+\subsection{Categorized Functionalities}
+\subsubsection{Homepage}
+User arrives at the Sentiment Analysis homepage and is welcomed with textual information explaining the idea of Sentiment Analysis. It also provides a quick overview on how to operate the home page with instructions along every step of the way as users scroll through (Figure 1 and Figure 2). 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{a1}
+\caption{Homepage}
+\label{fig:Result}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{b2}
+\caption{How it Works}
+\label{fig:Result}
+\end{figure}
+
+\subsubsection{Samples Section}
+As the user scrolls further down the web page, it is designed to lead the user's attention to the a "Samples" section for the Sentiment Analysis web application (Figure 3). It currently includes four categories: TV Shows, Universities, Athletes, and Restaurants. Once a user selects any one of these categories, the webpage will display four different items related to the category (contents of sample categories are shown in Figure 4,5 and 6). Each item can be clicked on, and the Sentiment Analysis web application will display a report for said category with an overall score as well as individual tweets.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{c2}
+\caption{Samples Section}
+\label{fig:Result}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{d2}
+\caption{Sample Category: Athletes}
+\label{fig:Result}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{e2}
+\caption{Sample Category: TV Shows}
+\label{fig:Result}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{f2}
+\caption{Sample Category: Restaurants}
+\label{fig:Result}
+\end{figure}
+
+
+\subsubsection{Tweet Data}
+Once a user clicks a category, the webpage expands into a table to display a list of tweets with various scores ranging from positive to negative (Figure 7). There are two tables that are displayed - one table includes the highly positive tweets and the other for the highly negative tweets. Each table has three columns: the user's Twitter handle, their follower count, and the tweet. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{g2}
+\caption{Sample Tweet Data}
+\label{fig:Result}
+\end{figure}
+
+\subsection{Operational Information}
+\subsubsection{Prerequisites}
+\begin{itemize}
+\item Able to open and use a web browser on the Operating Systems specified in the "System Requirements" section
+\item An internet connection to access the website
+\end{itemize}
+
+\subsubsection{Steps to use the Sentiments Analysis Web Application}
+Open the web browser and visit \url{https://jazzmen-capstone.herokuapp.com/} to visit the home page. To view the sample data, simply scroll down from the home page and click on the categories presented as shown in Figure 3.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1}
+\caption{Menu}
+\label{fig:Menu}
+\end{figure}
+
+If you wish to make a customized keyword search, click on the menu button on the top right of the web page to open the menu, as shown in Figure 8. Select the option for customized searches and it will navigate you to the Custom Search page. The Menu tab on the top right of the webpage is visually easy to spot and once clicked, the menu is expanded into the list of items as seen in Figure 8. \\
+Once on the custom search page which can be seen in Figure 9, you have to register first with a username by writing it in the username field and the password in the password field and then clicking the "Register" button. After this you can login by using your account credentials in the appropriate text fields and then clicking the "login" button. 
+
+\begin{figure}[H]
+\centering
+\includegraphics{8}
+\caption{Login/Registeration Page}
+\label{fig:Menu}
+\end{figure}
+
+Once you have logged in, you are now able to start your customized search. Enter your keyword into the field and click the search button. An example is shown in Figure 10.
+
+\begin{figure}[H]
+\centering
+\includegraphics{9}
+\caption{Custom Search Page}
+\label{fig:Menu}
+\end{figure}
+
+
+Your search results will be displayed in an easy to read format. The results view can be switched between bubble view shown in Figure 11 or the Tables view shown in Figure 12.  Since the web application stores previously searched data, the historical data can be refreshed by clicking the "Refresh Data" right under the Results title, as seen in Figure 12. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{6}
+\caption{Bubble View}
+\label{fig:Bubble View}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{7}
+\caption{Table View}
+\label{fig:Menu}
+\end{figure}
+
+
+
+
+
+\end{document}
