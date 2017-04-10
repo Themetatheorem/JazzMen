@@ -1,0 +1,404 @@
+\documentclass[12pt, titlepage]{article}
+\usepackage[margin=1.2in]{geometry}
+\usepackage{xcolor} % for different colour comments
+\usepackage{booktabs}
+\usepackage{enumerate}
+\usepackage{listings}
+\usepackage{titling}
+\usepackage{tabularx}
+\usepackage[hidelinks=true]{hyperref}
+\usepackage{makecell}
+
+%% Comments
+\newif\ifcomments\commentstrue
+
+\ifcomments
+\newcommand{\authornote}[3]{\textcolor{#1}{[#3 ---#2]}}
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+\else
+\newcommand{\authornote}[3]{}
+\newcommand{\todo}[1]{}
+\fi
+
+\newcommand{\wss}[1]{\authornote{magenta}{SS}{#1}}
+\newcommand{\ds}[1]{\authornote{blue}{DS}{#1}}
+
+\renewcommand\thesubsubsection{\thesection.\arabic{subsection}.\alph{subsubsection}}
+\setlength\parindent{0pt} % Cleaner look
+
+%% Graphics
+\usepackage{float}
+\usepackage{caption}
+\usepackage{graphicx}
+\graphicspath{ {Images/} }
+
+
+% Requirement template -------------------------------------------------------
+\newcommand{\requirement}[8]{%
+\fbox{\parbox{\textwidth}{%
+\parbox[t]{.333\textwidth}{\raggedright% 
+\textbf{Req. \#}: \refstepcounter{ReqNumCounter} \arabic{ReqNumCounter} \label{#1}}%
+\parbox[t]{.333\textwidth}{\centering% 
+\textbf{Req. Type}: \ref{#2}}%
+\parbox[t]{.333\textwidth}{\raggedleft%
+\textbf{Use Case \#}: \ref{#3}}
+\newline\\
+\textbf{Description}: #4\\\\
+\textbf{Rationale}: #5\\\\
+\textbf{Fit Criterion}: #6\\\\
+\textbf{Priority}: #7 \hfill \textbf{History}: #8
+}}}
+
+\begin{document}
+
+\title{Design Document\\  Sentiments Analysis with Twitter \\Team Jazz Men}
+\author{Anagh Goswami 1217426 \\ Meet Pandya 1214306 \\ Jasman Gill  1211554 \\ Jesse Truong  1222722 \\ Jia Xu  1213268 \\}
+\date{\today}
+\maketitle
+
+\pagenumbering{gobble} % start numbering after TOC
+
+\newpage
+
+% ================================= TOC ================================= %
+\newgeometry{bottom=1.1in, top=1.1in}
+\tableofcontents
+\listoffigures
+\listoftables
+\newpage
+\pagenumbering{arabic}
+\restoregeometry
+
+\section{Revision History}
+
+\begin{table}[h]
+\centering
+\caption{Revision History}
+\begin{tabular}{|l|l|l|}
+\Xhline{3\arrayrulewidth}
+\bf Description of Changes & \bf Author & \bf Date\\\hline
+Created first version with appropriate sections. & Meet Pandya & January 7, 2017\\\midrule
+Edited the document &Jesse Truong & January 8, 2017\\\bottomrule
+Worked on Solution to Challenges & Anagh Goswami & April 7, 2017\\\bottomrule
+Edited for Final Revision &Meet Pandya & April 8, 2017\\\bottomrule
+\Xhline{3\arrayrulewidth}
+\end{tabular}
+\end{table}
+
+\pagebreak
+
+
+\section{Introduction}
+
+\subsection{Purpose}
+The purpose of Sentiments Analysis with Twitter is to provide a way for high school students to see what is being said about a university on the social media. This project also provides benchmark analysis which would help student compare and contrast two potential universities of their choices.
+
+\subsection{Description}
+Twitter is a hugely popular social media application used to communicate people's thoughts
+and opions with those around them. There are currently a whole generation of students that
+use the application to see what others think of a certain topic. Some of these students being
+highschool seniors who are trying to decide what university they are going to attend. There
+is no medium for them to be able to quickly assess their fellow peers thoughts on certains
+schools other then doing independent research.
+Allowing students to see collected and analyzed data would greatly help them in being able
+to determine which university is right for them. This is even more so true for students who
+are on the edge of making a decision, but would like to see others opinions be it negative or
+positive to help them with their own. Depending upon how succesful the project is, it could
+possibily even be used by companies to determine how they can improve and what others
+around them are doing that is seen as positive features.
+
+\subsection{Scope}
+The scope of Sentiments Analysis is started with but not limited to High school students. This has a potential to be expanded to organizations, brands and many more categories where Sentiments Analysis could be utilized for the intended purpose.
+
+\newpage
+\section{Overview}
+
+\section{Development Details}
+\subsection{Language of Implementation}
+Sentiments Analysis is based on the Client-Server architecture style as the inputs to the system comes from users which are the clients and the resulting scores are retrieved from the server using the APIs. The source code of the Sentiments Analysis is written with Python using the Flask Web Framework. The Webpage UI used to display the results is developed using HTML, CSS, Bootstrap Framework and Javascript.
+
+\subsection{Supporting Frameworks/APIs/Library}
+Alchemy Language API\\
+Twitter API\\
+Requests Library for HTTP (Python)\\
+Flask Web Framework\\
+Bootstrap Framework
+
+\newpage
+\section{Implementation Components}
+\subsection{Flask Function}
+Flask Web Framework is used to build the webpage using python. The way Flask works is that you define functionality at each page of the Web UI that you are working on. The Web UI is hosted on localhost and pages are defined in Flask from there based on the route. Each page for the Web UI on Flask has a function that it executes when it is on the page. \\
+The "home" function within the code for Flask which is used for the homepage calls upon the HTML file that encapsulates all the Front End code for the homepage of the UI. The HTML file is the start point of the application. And similarly the other functions like cutom page and login page are called upon when the user has navigated to those respective pages. \\
+Eventually the website will be hosted live on a web server of the team's choice. During the developmental stage, the web app is locally hosted. In Figure 1, the psuedo-code displays the Flask Functions.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{aaa}
+\caption{Flask Function}
+\label{fig:Flask}
+\end{figure}
+
+
+\subsection{Get Data Function}
+The "getdata" function as defined, iterates through the query "keyword" and each letter is fed as the input to the Twitter Search Function described in the succeeding section. Each letter is inputted in the Twitter Search function and the resulted data is added to a "storage variable". By the end of the loop, the "storage variable" has all the data retrieved from the Twitter Search Function. Finally, the "storage variable" is what is returned in this Get Data Function. The functionality of Get Data can be seen in Figure 2.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{bbb}
+\caption{Psuedo-Code of Get Data}
+\label{fig:GetData}
+\end{figure}
+
+
+\subsection{Twitter Search Function}
+In this section the twitter search function will be discussed that entails using the Twitter API and also the Alchemy API. The twitter search function has an input parameter which is the query 'keyword' to be searched for on twitter. This keyword is used as the query in the URL for the Twitter API. Requests library is used to get the tweets from twitter API and the resulted data is stored in a variable using JSON format as seen in Figure 3. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{ccc}
+\caption{Twitter Search Function}
+\label{fig:TwitterSearch}
+\end{figure}
+
+\subsubsection{Alchemy API}
+Within the Twitter Search Function, the Alchemy API is called upon to feed the tweets in order to retrieve the Sentiment score. The score is tallied based on its emotion whether it is neutral, positive or negative. Neutral scoring tweets are not accounted for in the final result as they do not make a difference. The snippet of code for the Alchemy API is provided in Figure 4.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{ddd}
+\caption{Alchemy API  function}
+\label{fig:Alchemy}
+\end{figure}
+
+\subsection{Store and Retrieve Tweets}
+The functions for Storing and retrieving tweets from the database are described in this section. These functions are part of the Data Object module. The Storing function deals with saving tweets in the database with the topic that it pertains and to and also the date of the entry. While the retrieval function deals with simply getting the tweets from the database and putting it into an Array. The figure below shows the psuedo-code for the Store and Retrieval of tweets.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{eee}
+\caption{Store and Retrieve Tweets}
+\label{fig:Alchemy}
+\end{figure}
+
+\subsection{Personalized Data}
+The functions for Personalized Data also come from the Data Object module. Custom data is saved when a user searches for a topic using the search bar, once they have logged in. The resulting data is then stored to the database and it is associated with that user in particular. Also, for the retrieval of the data, the function looks for any data associated with the currently logged in user. If there exists any data, that will be displayed or else no data will be shown. Figure below shows the high level implementation of the two functions. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{fff}
+\caption{Personalized Data}
+\label{fig:Alchemy}
+\end{figure}
+
+\subsection{User}
+The functions for User define the User Registration and User Retrieval attributes of the system. User Registration checks whether a user already exists with the same username or not, if then only does it register the new user. User Retrieval simply checks through the database if a user exists and then adds it to a list of array. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{ggg}
+\caption{User}
+\label{fig:Alchemy}
+\end{figure}
+
+
+\section{Error Handling}
+\subsection{Server Failure}
+\begin{itemize}
+\item Backup and Recovery Scripts
+\item Condition to redirect traffic when server is down
+\end{itemize}
+
+\newpage
+\section{User Interface Elements}
+In this section the different elements of the Web UI are displayed with images and brief description.
+\subsection{Home Page}
+This is the top of the Home Page where the user begins from every time using the application. After clicking on the "Tell Me More" button, the webpage traverses down to the next section. The side menu allows for the traversing of the home page. By clicking on each button, the page navigates automatically to that particular section of the homepage. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1}
+\caption{Top of Home Page}
+\label{fig:Result}
+\end{figure}
+
+
+\subsection{How It Works}
+After scrolling down on the home page, this section known as "How It Works" gives a brief description of how the Sentiments Analysis works.
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{2}
+\caption{How it works}
+\label{fig:Result}
+\end{figure}
+
+\subsection{Demo}
+After further scrolling down on the home page, the Sample section shows four images with Categories on top of each. By Clicking on the University Category, it displays 4 pre-defined objects within the category. The three images below show the process step by step. First image shows the 4 pre-defined categories. The next image shows the 4 objects within the University Category. The final image shows a table with Most Positive and Most Negative tweets.
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{3}
+\caption{Demo}
+\label{fig:Result}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{4}
+\caption{Demo 2}
+\label{fig:Result}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{mac2}
+\caption{Demo 3}
+\label{fig:Result}
+\end{figure}
+
+
+\subsection{Custom Search}
+The Custom Search page can be accessed by using the Right side Menu, and there is a button that says "Customized Searches". After arriving on the custom search page, we can see in the figures below, that at first you arrive at a login page. And once logged in after registering with a user name, there is a search bar allowing the user to look for any topic of their choice.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{8}
+\caption{Custom Search}
+\label{fig:Result}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{5}
+\caption{Custom Search 2}
+\label{fig:Result}
+\end{figure}
+
+\subsection{Custom Data View}
+The Custome search result data can be displayed in two manners. One is in a bubble and one is in table. The bubble view shows the most impactful positive and negative tweet. While the table shows 10 Most Positive and 10 Most Negative tweet about the topic searched by the user. Figures below show the two different views. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{6}
+\caption{Bubble View}
+\label{fig:Result}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{7}
+\caption{Table View}
+\label{fig:Result}
+\end{figure}
+
+\iffalse
+\newpage
+\section{System Components}
+A description of the System Components of Sentiments Analysis is provided here in detail. 
+
+\subsection{Comparative Analysis}
+\subsubsection{Feature Detail}
+Comparative Analysis is a feature that will be implemented in this project. This analysis can be applied to this project which allows users to compare and contrast Sentiments Score from two different data sets. For example, the two different data sets could be comparing two universities, where a student wants to see how much better is one from another. This allows for flexibility with how a user is able to utilize the data made available from the Sentiments Analysis. Instead of having simply one way of showing results with one query, comparative analysis gives users more ways of looking at the data. \\
+\subsubsection{Feature Implementation}
+The comparative results will be displayed in two categories side by side, based on the query string. The result will show the query string in huge text and underneath would be the statistical numbers displayed such as the Sentiments Score, Positive Tweets, Negative Tweets and Neutral Tweets in numerical format initially. Figure 5 shows how the comparative data will be displayed on the Web UI. 
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{mac}
+\caption{Comparative Search Result}
+\label{fig:Result}
+\end{figure}
+Next, by clicking on the Query String user will see an expanded table with a list of most impactful positive and negative tweets for that particular query string. This will allow the user to see in detail what the tweets actually discussed about the topic searched. The table will categorize each impactful tweet by user, followers, tweet and the score. Figure 6 shows how the tabular format is displayed.
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{mac2}
+\caption{Comparative Search Result}
+\label{fig:Result}
+\end{figure}
+
+\subsection{Graphical Data Representation}
+\subsubsection{Feature Detail}
+Graphical representation of the data collected from the user’s interest keywords will be displayed on the webpage. Using Google Charts API, this feature will provide easy-to-read and useful graphs of the data collected. It can be used to enhance the Comparative Analysis feature by providing graphs that show the two data sets. (If we find a way to store historical data, this feature can be implemented --->)Using historical sentiment scores, this feature can provide charts that show the sentiments trend of the keywords searched over a period of time as well. Tracked sentiments will be displayed as an overall score for each keyword searched, creating a ranking amongst the keyword set.
+
+\subsubsection{Feature Implementation}
+The visual implementation of this feature will be used within a few different functions of the webpage. As mentioned above, the Comparative Analysis feature will greatly benefit from graphical representations of the Twitter data found from the keywords searched. Pictographs of the percentage of positive/negative sentiments towards a certain keyword can depict the overall score in a clear fashion.
+
+\subsection{Historical Data - BackEnd}
+\subsubsection{Feature Detail}
+Information will be stored in a database (Mongo DB) to be used for future historical data comparison. The data that will be stored are the keywords that were used as well as associated sentiment scores for tweets. The collected data can later be pulled and analyzed with respect to future keyword search requests as well as compared through different time spans to show changes in the sentiment scores to develop trends. 
+
+\subsection{Track User Details of Specific Tweets}
+\subsubsection{Feature Detail}
+Users will input a keyword to search through Twitter messages. These messages will then be given a score depending on the sentiment towards the topic. The collected tweets will be sorted in ascending or descending order to view the extremities at the top as well as given an overall view of how positive or negative the public’s opinion is on the topic. These tweets will then be taken into account for the amount of followers the user has (their overall social media influence) and will be stored to be used for other functionalities of the web application such as advanced analysis of certain topics. We will also allow directly contacting the handlers of the tweets in order to delve further into detail of why their messages have such extreme sentiment scores.
+\fi
+
+
+
+
+
+
+\newpage
+\section{JSON Data Format}
+The data set of searched tweets are collected in JSON format. Currently, the data set is updated according to the interest of the user. 
+Below is an excerpt showing the JSON format from the data collected through the Twitter API:
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{json}
+\caption{JSON data format}
+\label{fig:Result}
+\end{figure}
+
+\newpage
+\section{Algorithms}
+This project does not have many complex algorithms. This is because the Alchemy API from IBM solves our complexity. //
+The way the Alchemy API is utilized is by feeding a tweet as an input to the API. The tweet is then checked to be assigned a Positive or Negative type by the Alchemy API. Once a positive or negative type is assigned to a tweet, the Alchemy API then assigns the Sentiments Score to the particular tweet that is being executed in the on-going iteration. If the tweet gets a Neutral tag then there is a counter variable keeping track of neutral tweets which is increased by 1. \\
+The resulting sentiments data is stored in a JSON data object by splitting the tweets based on their tags, whether they are positive or negative. The neutral tweets are not stored anywhere, but rather only the total number of neutral tweets is stored separately. 
+
+
+\section{Solution to Challenges}
+\subsection{Challenges}
+Following is the challenge addressed in the Problem Statement:\\
+The challenges for this project would be figuring out the way to go through social media and getting all the necessary information needed based on a topic or a keyword. We have to work with the information that is freely available on the internet. One of the major issue with social media is all the information can be biased, so the information we collect has to be presented in a manner that it does not come across as factual. Also, picking what kind of organizations to focus on is a challenge because not all organizations are actively discussed on social media platforms.\\
+\subsection{Solution}
+The first challenge addressed was finding the means through which to go through social media data. This was solved by utilizing the Twitter API, which provides many different ways of retrieving tweeted data. Data is returned in JSON format so not very user friendly way of displaying. Therefore, the data will be presented in a systematic and understandable manner.\\
+The second challenge addressed was the bias involved with the information from social media. Because of this reason, the amount of data to be collected in order to do the analysis will be in big sizes in order to have lesser impact from biases. \\
+The third challenge addressed is what kind of organizations to focus on. This was solved by leaving the choices of organizations or institutions to be openly decided by the end user. 
+
+
+\section{Traceability Matrix}
+A traceability matrix is provided in the table below to show links between requirements and modules.
+
+\begin{table}[H]
+\caption{\bf Traceability Matrix} \label{tab:reqtrace}
+\centering
+\begin{tabularx}{0.7\textwidth}{p{4cm}X}
+\toprule {\bf Requirement} & {\bf Module(s)}\\
+\midrule
+1	&	5 \\
+2	&	5\\
+3	&	3,8\\
+4	&	2,6\\
+5      &	2,6\\
+6	&	2,6\\
+7	&	1,7\\
+8 	&	7\\
+9	&      7\\
+10 	&	3\\
+11	&	5\\
+12	&	1\\
+13	&	3\\
+14	&	4\\
+15	&	5\\
+16	&	9\\
+18	&	9\\
+20	&	9\\
+
+
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+
+
+
+\end{document}
